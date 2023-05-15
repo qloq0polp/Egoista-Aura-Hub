@@ -1,0 +1,312 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+	Name = "Aura Hub",
+	LoadingTitle = "Aura Loading...",
+	LoadingSubtitle = "by Herobrine#9967",
+	ConfigurationSaving = {
+	   Enabled = false,
+	   FolderName = "AuraHub",
+	   FileName = "Aura Config"
+	},
+	Discord = {
+	   Enabled = true,
+	   Invite = "mNHTP7xPRh", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+	   RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+	},
+	KeySystem = true, -- Set this to true to use our key system
+	KeySettings = {
+	   Title = "Aura Hub",
+	   Subtitle = "Log In With Key",
+	   Note = "Enter The Key :)",
+	   FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+	   SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+	   GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+	   Key = {"Aura"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+	}
+ })
+
+ local SkillsTab = Window:CreateTab("Skills", 13421955788) -- Title, Image
+ local GameSkills = SkillsTab:CreateSection("Game Skills")
+
+ local Skillbind = SkillsTab:CreateKeybind({
+	Name = "Skill-1",
+	CurrentKeybind = "One",
+	HoldToInteract = false,
+	Flag = "Keybind1", 
+	Callback = function(Keybind)
+	 game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,1)
+	end,
+ })
+
+ local Skillbind2 = SkillsTab:CreateKeybind({
+	Name = "Skill-2",
+	CurrentKeybind = "Two",
+	HoldToInteract = false,
+	Flag = "Keybind2", 
+	Callback = function(Keybind)
+	 game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,2)
+	end,
+ })
+
+ local Skillbind3 = SkillsTab:CreateKeybind({
+	Name = "Skill-3",
+	CurrentKeybind = "Three",
+	HoldToInteract = false,
+	Flag = "Keybind3", 
+	Callback = function(Keybind)
+	 game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,3)
+	end,
+ })
+
+ local Skillbind4 = SkillsTab:CreateKeybind({
+	Name = "Skill-4",
+	CurrentKeybind = "Four",
+	HoldToInteract = false,
+	Flag = "Keybind4", 
+	Callback = function(Keybind)
+	 game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,4)
+	end,
+ })
+
+ local Skillbind5 = SkillsTab:CreateKeybind({
+	Name = "Skill-5",
+	CurrentKeybind = "Five",
+	HoldToInteract = false,
+	Flag = "Keybind5", 
+	Callback = function(Keybind)
+	 game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,5)
+	end,
+ })
+
+ local SpecialSkills = SkillsTab:CreateSection("Special Skills")
+
+ local TackleSkill = SkillsTab:CreateKeybind({
+	Name = "Tackle",
+	CurrentKeybind = "F",
+	HoldToInteract = true,
+	Flag = "Keybind6", 
+	Callback = function(Keybind)
+	 game:GetService("ReplicatedStorage").Remotes.Ball.Tackle:FireServer()
+	end,
+ })
+
+ local DribbleSkill = SkillsTab:CreateKeybind({
+	Name = "Auto Dribble",
+	CurrentKeybind = "V",
+	HoldToInteract = true,
+	Flag = "Keybind7", 
+	Callback = function(Keybind)
+	 game:GetService("ReplicatedStorage").Remotes.Ball.Dribble:FireServer(workspace.Objects.Balls.PLAIN_BALL)
+	end,
+ })
+
+ local FlowSkill = SkillsTab:CreateKeybind({
+	Name = "Activate Flow",
+	CurrentKeybind = "B",
+	HoldToInteract = false,
+	Flag = "Keybind9", 
+	Callback = function(Keybind)
+	 game:GetService("ReplicatedStorage").Remotes.UI.ActivateFlow:FireServer()
+	end,
+ })
+
+ local MiscsTab = Window:CreateTab("Misc", 13421955788) -- Title, Image
+ local HitboxSection = MiscsTab:CreateSection("Hitbox Change")
+
+ local Toggle1 = MiscsTab:CreateToggle({
+	Name = "Show GoalKeepers HitBox",
+	CurrentValue = false,
+	Flag = "Toggle1",
+	Callback = function(Value)
+		if Value == true then
+            game.Workspace.Objects.Goalkeepers.BlueGoalkeeper.BlockHitbox.Transparency = 0
+            game.Workspace.Objects.Goalkeepers.RedGoalkeeper.BlockHitbox.Transparency = 0
+            Value = false
+        else
+            game.Workspace.Objects.Goalkeepers.BlueGoalkeeper.BlockHitbox.Transparency = 1
+            game.Workspace.Objects.Goalkeepers.RedGoalkeeper.BlockHitbox.Transparency = 1
+            Value = true
+        end
+	end,
+ })
+
+ local Toggle2 = MiscsTab:CreateToggle({
+	Name = "Show GoalZone",
+	CurrentValue = false,
+	Flag = "Toggle2",
+	Callback = function(Value)
+		if Value == true then
+            game.Workspace.Map.BlueGoal.GoalZone.Transparency = 0
+            game.Workspace.Map.RedGoal.GoalZone.Transparency = 0
+            Value = false
+        else
+            game.Workspace.Map.BlueGoal.GoalZone.Transparency = 1
+            game.Workspace.Map.RedGoal.GoalZone.Transparency = 1
+            Value = true
+        end
+	end,
+ })
+
+ local Toggle3 = MiscsTab:CreateToggle({
+	Name = "Resize Red Team GoalZone",
+	CurrentValue = false,
+	Flag = "Toggle3",
+	Callback = function(Value)
+		if Value == true then
+            game.Workspace.Map.RedGoal.GoalZone.Size = Vector3.new(50.5247, 6.00122, 14)
+            Value = false
+        else
+            game.Workspace.Map.RedGoal.GoalZone.Size = Vector3.new(49.5247, 0.00122438, 12.9519)
+            Value = true
+        end
+	end,
+ })
+
+
+
+
+ local Toggle4 = MiscsTab:CreateToggle({
+	Name = "Resize Blue Team GoalZone",
+	CurrentValue = false,
+	Flag = "Toggle4",
+	Callback = function(Value)
+		if Value == true then
+            game.Workspace.Map.BlueGoal.GoalZone.Size = Vector3.new(50.5247, 6.00122, 14)
+            Value = false
+        else
+            game.Workspace.Map.BlueGoal.GoalZone.Size = Vector3.new(49.5247, 0.00122438, 12.9519)
+            Value = true
+        end
+	end,
+  })
+
+  local Toggle5 = MiscsTab:CreateToggle({
+	Name = "Auto Goal Blue",
+	CurrentValue = false,
+	Flag = "Toggle5",
+	Callback = function(Value)
+		if Value == true then
+            game.Workspace.Map.BlueGoal.GoalZone.Size = Vector3.new(5000.5247, 6000.00122, 14000)
+			game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,1)
+			game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,2)
+			game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,3)
+			game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,4)
+			game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,5)
+            Value = false
+        else
+            game.Workspace.Map.BlueGoal.GoalZone.Size = Vector3.new(49.5247, 0.00122438, 12.9519)
+            Value = true
+        end
+	end,
+  })
+
+  local Toggle6 = MiscsTab:CreateToggle({
+	Name = "Auto Goal Red",
+	CurrentValue = false,
+	Flag = "Toggle6",
+	Callback = function(Value)
+		if Value == true then
+            game.Workspace.Map.RedGoal.GoalZone.Size = Vector3.new(5000.5247, 6000.00122, 14000)
+			game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,1)
+			game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,2)
+			game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,3)
+			game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,4)
+			game:GetService("ReplicatedStorage").Remotes.Ball.Skill:InvokeServer(workspace.Objects.Balls.PLAIN_BALL,5)
+            Value = false
+        else
+            game.Workspace.Map.RedGoal.GoalZone.Size = Vector3.new(49.5247, 0.00122438, 12.9519)
+            Value = true
+        end
+	end,
+  })
+
+  local LocalSection = MiscsTab:CreateSection("Local")
+
+  local Slider = MiscsTab:CreateSlider({
+	Name = "Goals",
+	Range = {0, 10000},
+	Increment = 10,
+	Suffix = "Goals",
+	CurrentValue = 0,
+	Flag = "Slider1", --
+	Callback = function(Value)
+     game.Players.LocalPlayer.ReplicatedData.Goals.Value = Value
+	end,
+ })
+
+  local CharacterTab = Window:CreateTab("Characters", 13421955788) -- Title, Image
+  local CharSection = CharacterTab:CreateSection("Character Change")
+
+  local Button1 = CharacterTab:CreateButton({
+	Name = "Julian Loki",
+	Callback = function()
+     game:GetService("ReplicatedStorage").Remotes.UI.CustomizeCharacter:FireServer({["SkinColor"] = 5,["HairColor"] = 24,["ShoeSecondaryColor"] = 1,["FacialHair"] = 1,["ShoePrimaryColor"] = 14,["UniformColor"] = 14,["Eyes"] = 2,["EyeColor"] = 7,["Shirt"] = 1,["Aura"] = "Default",["Nose"] = 1,["Mouth"] = 3,["Pants"] = 1,["HairStyle"] = 20})
+	end,
+  })
+
+  local Button2 = CharacterTab:CreateButton({
+	Name = "Barou Shouei",
+	Callback = function()
+     game:GetService("ReplicatedStorage").Remotes.UI.CustomizeCharacter:FireServer({["SkinColor"] = 3,["HairColor"] = 24,["ShoeSecondaryColor"] = 1,["FacialHair"] = 1,["ShoePrimaryColor"] = 14,["UniformColor"] = 14,["Eyes"] = 10,["EyeColor"] = 12,["Shirt"] = 1,["Aura"] = "Default",["Nose"] = 1,["Mouth"] = 3,["Pants"] = 1,["HairStyle"] = 2})
+	end,
+  })
+
+  local Button3 = CharacterTab:CreateButton({
+	Name = "Isagi Yoichi",
+	Callback = function()
+     game:GetService("ReplicatedStorage").Remotes.UI.CustomizeCharacter:FireServer({["SkinColor"] = 3,["HairColor"] = 24,["ShoeSecondaryColor"] = 1,["FacialHair"] = 1,["ShoePrimaryColor"] = 14,["UniformColor"] = 14,["Eyes"] = 1,["EyeColor"] = 17,["Shirt"] = 1,["Aura"] = "Default",["Nose"] = 1,["Mouth"] = 3,["Pants"] = 1,["HairStyle"] = 28})
+	end,
+  })
+
+  local Button4 = CharacterTab:CreateButton({
+	Name = "Bachira Meguru",
+	Callback = function()
+     game:GetService("ReplicatedStorage").Remotes.UI.CustomizeCharacter:FireServer({["SkinColor"] = 3,["HairColor"] = 24,["ShoeSecondaryColor"] = 1,["Pants"] = 1,["ShoePrimaryColor"] = 14,["UniformColor"] = 14,["Eyes"] = 2,["EyeColor"] = 4,["FacialHair"] = 1,["Aura"] = "Default",["HairStyle"] = 65,["Mouth"] = 3,["Nose"] = 1,["Shirt"] = 1})
+	end,
+  })
+
+  local AdminTab = Window:CreateTab("Admin", 13421955788) -- Title, Image
+  local VipSection = AdminTab:CreateSection("Vip Command")
+
+  local DeleteAI = AdminTab:CreateButton({
+	Name = "Delete Goal Keepers",
+	Callback = function()
+     game:GetService("ReplicatedStorage").Remotes.UI.Command:FireServer("DeleteGoalie",{})
+	end,
+  })
+
+  local ChangeRed = AdminTab:CreateButton({
+	Name = "Join Red Team",
+	Callback = function()
+     game:GetService("ReplicatedStorage").Remotes.UI.Command:FireServer("SetTeam",{game.Players.LocalPlayer.Name,"Red"})
+	end,
+  })
+
+  local ChangeBlue = AdminTab:CreateButton({
+	Name = "Join Blue Team",
+	Callback = function()
+	 game:GetService("ReplicatedStorage").Remotes.UI.Command:FireServer("SetTeam",{game.Players.LocalPlayer.Name,"Blue"})
+	end,
+  })
+
+  local TimeButton = AdminTab:CreateInput({
+	Name = "Set Time",
+	PlaceholderText = "Value",
+	RemoveTextAfterFocusLost = false,
+	Callback = function(Text)
+     game:GetService("ReplicatedStorage").Remotes.UI.Command:FireServer("SetTime",{Text})
+	end,
+ })
+
+ local KickButton = AdminTab:CreateInput({
+	Name = "Kick",
+	PlaceholderText = "Player Name",
+	RemoveTextAfterFocusLost = false,
+	Callback = function(Text2)
+     game:GetService("ReplicatedStorage").Remotes.UI.Command:FireServer("Kick",{Text2})
+	end,
+ })
+  
+
+Rayfield:LoadConfiguration()
